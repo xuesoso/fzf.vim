@@ -820,7 +820,7 @@ function! fzf#vim#buffers(...)
     let buffers = s:buflisted()
   endif
   let sorted = sort(buffers, 's:sort_buffers')
-  let header_lines = '--header-lines=' . (bufnr('') == get(sorted, 0, 0) ? 1 : 0)
+  let header_lines = '--header-lines=0'     ## defaults to current buffer, allows selecting current buffer as an option
   let tabstop = len(max(sorted)) >= 4 ? 9 : 8
   return s:fzf('buffers', {
   \ 'source':  map(sorted, 'fzf#vim#_format_buffer(v:val)'),
